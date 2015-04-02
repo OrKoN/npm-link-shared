@@ -1,0 +1,19 @@
+{
+  "name": "npm-link-shared",
+  "version": "0.1.4",
+  "description": "links a folder of local modules with inter-dependencies to the target directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleksii Rudenko",
+  "bin": {
+    "npm-link-shared": "./index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "minimist": "^1.1.1",
+    "string": "^3.1.1"
+  }
+}
