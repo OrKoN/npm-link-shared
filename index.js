@@ -36,12 +36,7 @@ var DIRS = fs.readdirSync(sharedDir).filter(function (item) {
   return fs.statSync(item).isDirectory();
 });
 
-// exec = function (cmd, opts) {
-//   console.log(chalk.green('Running command `%s` with cwd = `%s`'), cmd, opts.cwd);
-// };
-
 var LINKED = {};
-
 
 function linkDir(dir, name) {
   console.log(chalk.green('\n\nLinking '  + dir));
