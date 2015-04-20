@@ -3,12 +3,11 @@
 var chalk = require('chalk');
 var exec = require('child_process').execSync;
 var fs = require('fs');
-var npm = require('npm');
 var path = require('path');
 var S = require('string');
 var argv = require('minimist')(process.argv.slice(2));
 
-var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir>';
+var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]]';
 
 if (argv._.length < 2) {
   console.log(usage);
@@ -26,15 +25,25 @@ if (!sharedDir || !targetDir) {
 sharedDir = S(sharedDir).ensureRight('/').s;
 targetDir = S(targetDir).ensureRight('/').s;
 
+var INCLUDED_MODULES = [];
+if (argv._.length > 2) {
+  for (var i = 2; i < argv._.length; i++) {
+    INCLUDED_MODULES.push(sharedDir + argv._[i]);
+  }
+}
+
 console.log(chalk.green('Will be installing modules from `') + chalk.cyan(sharedDir) + chalk.green('` to `') + chalk.cyan(targetDir) + chalk.green('`...'));
+console.log(chalk.green('Restricted to the following modules'), INCLUDED_MODULES);
 
 var DIRS = fs.readdirSync(sharedDir).filter(function (item) {
   return item[0] !== '.';
-}).map(function (item) {
-  return sharedDir + item;
-}).filter(function (item) {
-  return fs.statSync(item).isDirectory();
-});
+})
+  .map(function (item) {
+    return sharedDir + item;
+  })
+  .filter(function (item) {
+    return fs.statSync(item).isDirectory();
+  });
 
 var LINKED = {};
 
@@ -90,6 +99,14 @@ function link(dir) {
   }
 }
 
-DIRS.forEach(function (dir) {
-  link(dir);
-});
+DIRS
+  .filter(function (item) { // install only explicitly set modules
+      if (INCLUDED_MODULES.length == 0) {
+        return true;
+      } else {
+        return INCLUDED_MODULES.indexOf(item) !== -1;
+      }
+    })
+  .forEach(function (dir) {
+    link(dir);
+  });
