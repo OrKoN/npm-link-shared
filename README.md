@@ -12,7 +12,7 @@ npm install npm-link-shared -g
 
 ## Changelog
 
-v1.0.6 (2015-04-20) - Removed unneeded npm dependency. Added a possibility to define [which modules to install](#define-specific-modules-to-install).
+v0.1.6 (2015-04-20) - Removed unneeded npm dependency. Added a possibility to define [which modules to install](#define-specific-modules-to-install).
 
 ## Usage
 
