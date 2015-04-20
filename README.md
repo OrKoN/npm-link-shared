@@ -1,7 +1,8 @@
 # npm-link-shared
 
-Installs a set of local node modules into a target folder using `npm link`. Links all dependencies of the local modules if they are listed in the source folder.
+[![npm version](https://badge.fury.io/js/npm-link-shared.svg)](http://badge.fury.io/js/npm-link-shared)
 
+Installs a set of local node modules into a target folder using `npm link`. Links all dependencies of the local modules if they are listed in the source folder.
 
 ## Installation
 
