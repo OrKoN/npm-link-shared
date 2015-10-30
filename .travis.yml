@@ -4,9 +4,5 @@ node_js:
   - "4.2.1"
   - "5.0.0"
 
-install:
-  - npm install npm
-  - npm install
-
 script:
   - npm run test
