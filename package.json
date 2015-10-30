@@ -1,10 +1,10 @@
 {
   "name": "npm-link-shared",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "links a folder of local modules with inter-dependencies to the target directory",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "author": "Oleksii Rudenko",
   "bin": {
@@ -22,5 +22,10 @@
     "chalk": "^1.0.0",
     "minimist": "^1.1.1",
     "string": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-fs": "^0.1.0",
+    "mocha": "^2.3.3"
   }
 }
