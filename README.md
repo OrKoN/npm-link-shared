@@ -15,6 +15,8 @@ npm install npm-link-shared -g
 
 ## Changelog
 
+v0.2.1 (2016-01-12) - Thanks to @barroudjo, module folder names are now de-coupled from the names in the package.json. So any name can be used as a folder name.
+
 v0.2.0 (2015-10-30) - Links using `--production` flag so that devDependencies should not be installed anymore. Tests added.
 
 v0.1.6 (2015-04-20) - Removed unneeded npm dependency. Added a possibility to define [which modules to install](#define-specific-modules-to-install).
