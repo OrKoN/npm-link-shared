@@ -1,6 +1,6 @@
 {
   "name": "npm-link-shared",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "links a folder of local modules with inter-dependencies to the target directory",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "mocha": "^2.3.3"
   },
   "engines": {
-    "node" : ">=4.0.0"
+    "node": ">=4.0.0"
   }
 }
