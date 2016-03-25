@@ -1,7 +1,7 @@
 {
-  "name": "module-a",
+  "name": "@scope/module-d",
   "version": "1.0.0",
-  "description": "module a depends on module b",
+  "description": "scoped module",
   "repository": {
     "type": "git",
     "url": "git://github.com/OrKoN/npm-link-shared.git"
@@ -13,8 +13,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "module-b": "*",
-    "module-c": "*",
-    "@scope/module-d": "*"
   }
 }
