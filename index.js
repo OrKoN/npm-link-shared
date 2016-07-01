@@ -8,7 +8,7 @@ var S = require('string');
 var argv = require('minimist')(process.argv.slice(2));
 var link = require('./lib/link');
 
-var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]]';
+var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [--<npm-link-options>] [<module1..> [, <module2..>]]';
 
 if (argv._.length < 2) {
   console.log(usage);
@@ -33,4 +33,8 @@ if (argv._.length > 2) {
   }
 }
 
-link(sharedDir, targetDir, moduleList);
+var optionList = Object.keys(argv).slice(1).map(function (optionName) {
+    return '--' + optionName + '=' + argv[optionName];
+});
+
+link(sharedDir, targetDir, moduleList, optionList);
