@@ -17,7 +17,7 @@ npm install npm-link-shared -g
 
 ## Changelog
 
-v?     (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`
+v0.3.3 (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`
 
 v0.3.0 (2016-03-25) - Support for @scope packages. For example, `@scope/my-package`.
 
