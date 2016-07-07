@@ -17,6 +17,8 @@ npm install npm-link-shared -g
 
 ## Changelog
 
+v?     (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`
+
 v0.3.0 (2016-03-25) - Support for @scope packages. For example, `@scope/my-package`.
 
 v0.2.1 (2016-01-12) - Thanks to @barroudjo, module folder names are now de-coupled from the names in the package.json. So any name can be used as a folder name.
@@ -52,6 +54,20 @@ For example:
 ```
 
 this links modules `my-module1` and `my-module2` located in the `internal_modules` directory to the `my-project` dir. Only these two modules are installed but their dependencies are resolved against the entire `internal_modules` directory.
+
+### Define options passed to npm link
+
+```
+  npm-link-shared <shared-modules-dir> <target-installation-dir> [--<npm-link-option> [--<npm-link-option>]];
+```
+
+For example:
+
+```
+  npm-link-shared /home/user/internal_modules/ /home/user/my-project --production
+```
+
+this prevents installation of devDependencies of shared modules by passing the production option to npm link (npm link --production)
 
 ## LICENSE
 
