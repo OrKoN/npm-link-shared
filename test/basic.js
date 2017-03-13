@@ -30,6 +30,8 @@ describe('npm-link-shared', function() {
   it('should install dependencies via linking and respect restrictions on modules', function(done) {
     var base = process.cwd();
     link(base + '/test/shared_modules/', base + '/test/target_single', ['module-c'], [ '--production' ]);
+    assert(!fs.existsSync(base + '/test/target_single/node_modules/module-a'), 'module-a exists but should have been ignored');
+    assert(!fs.existsSync(base + '/test/target_single/node_modules/module-b'), 'module-b exists but should have been ignored');
     assert(fs.existsSync(base + '/test/target_single/node_modules/module-c'), 'module-c does not exist');
     done();
   });
