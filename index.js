@@ -8,7 +8,7 @@ var S = require('string');
 var argv = require('minimist')(process.argv.slice(2));
 var link = require('./lib/link');
 
-var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [--<npm-link-option> [--<npm-link-option>]] [<module1..> [, <module2..>]]';
+var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [--yarn] [--<npm-link-option> [--<npm-link-option>]] [<module1..> [, <module2..>]]';
 
 if (argv._.length < 2) {
   console.log(usage);
@@ -33,8 +33,13 @@ if (argv._.length > 2) {
   }
 }
 
-var optionList = Object.keys(argv).slice(1).map(function (optionName) {
+var executable = argv['yarn'] ? 'yarn' : 'npm';
+
+delete(argv['_']);
+delete(argv['yarn']);
+
+var optionList = Object.keys(argv).map(function (optionName) {
     return '--' + optionName + '=' + argv[optionName];
 });
 
-link(sharedDir, targetDir, moduleList, optionList);
+link(sharedDir, targetDir, moduleList, optionList, executable);

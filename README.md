@@ -17,7 +17,9 @@ npm install npm-link-shared -g
 
 ## Changelog
 
-v0.3.3 (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`
+v0.4.0 (2017-03-13) - Support for changing executable to yarn with `--yarn`.
+
+v0.3.3 (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`.
 
 v0.3.0 (2016-03-25) - Support for @scope packages. For example, `@scope/my-package`.
 
@@ -68,6 +70,24 @@ For example:
 ```
 
 this prevents installation of devDependencies of shared modules by passing the production option to npm link (npm link --production)
+
+### Use yarn instead
+
+```
+  npm-link-shared <shared-modules-dir> <target-installation-dir> [--yarn];
+```
+
+For example:
+
+```
+  npm-link-shared /home/user/internal_modules/ /home/user/my-project --yarn
+```
+
+this works in conjunction with all other options
+
+## Developing
+
+To run tests successfully, you must have both npm and yarn in your `$PATH`.
 
 ## LICENSE
 
