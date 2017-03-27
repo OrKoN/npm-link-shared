@@ -17,6 +17,8 @@ npm install npm-link-shared -g
 
 ## Changelog
 
+v0.5.0 (2017-03-27) - Support for graceful exit if `--allow-no-dir` is used and shared modules or target directories do not exist.
+
 v0.4.0 (2017-03-13) - Support for changing executable to yarn with `--yarn`. **Use at your own risk!** `yarn link` is not yet functionally equivalent to `npm link`.
 
 v0.3.3 (2016-07-01) - Support for npm link options, removed hardcoded usage of `--production`.
