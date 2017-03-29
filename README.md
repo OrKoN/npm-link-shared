@@ -17,7 +17,7 @@ npm install npm-link-shared -g
 
 ## Changelog
 
-v0.5.0 (2017-03-27) - Support for graceful exit if `--allow-no-dir` is used and shared modules or target directories do not exist.
+v0.5.0 (2017-03-29) - **BREAKING CHANGES**: The lib/api function's arguments have been revamped. The previously undocumented argument --includeDev is now --include-dev to be consistent with other arguments. We now print a warning and exit gracefully if either the shared or target directory do not exist.
 
 v0.4.0 (2017-03-13) - Support for changing executable to yarn with `--yarn`. **Use at your own risk!** `yarn link` is not yet functionally equivalent to `npm link`.
 
@@ -34,7 +34,7 @@ v0.1.6 (2015-04-20) - Removed unneeded npm dependency. Added a possibility to de
 ## Usage
 
 ```
-  npm-link-shared <local-modules-folder> <target-dir>
+  npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]] [--yarn] [--include-dev] [--<npm-link-option> [--<npm-link-option>]]
 ```
 
 For example:
@@ -43,51 +43,41 @@ For example:
   npm-link-shared /home/user/internal_modules/ /home/user/my-project
 ```
 
-this links all modules located in the `internal_modules` directory to the `my-project` dir.
+This links all modules located in the `internal_modules` directory to the `my-project` dir.
 
 ### Define specific modules to install
-
-```
-npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]];
-```
-
-For example:
 
 ```
   npm-link-shared /home/user/internal_modules/ /home/user/my-project my-module1 my-module2
 ```
 
-this links modules `my-module1` and `my-module2` located in the `internal_modules` directory to the `my-project` dir. Only these two modules are installed but their dependencies are resolved against the entire `internal_modules` directory.
+This links modules `my-module1` and `my-module2` located in the `internal_modules` directory to the `my-project` dir. Only these two modules are installed but their dependencies are resolved against the entire `internal_modules` directory.
 
 ### Define options passed to npm link
-
-```
-  npm-link-shared <shared-modules-dir> <target-installation-dir> [--<npm-link-option> [--<npm-link-option>]];
-```
-
-For example:
 
 ```
   npm-link-shared /home/user/internal_modules/ /home/user/my-project --production
 ```
 
-this prevents installation of devDependencies of shared modules by passing the production option to npm link (npm link --production)
+This prevents installation of devDependencies of shared modules by passing the production option to npm link (npm link --production).
 
 ### Use yarn instead
 
 **NOTE:** `yarn link` is currently functionally different from `npm link`, and should not be considered stable. Use at your own risk until the yarn project has stabilized.
 
 ```
-  npm-link-shared <shared-modules-dir> <target-installation-dir> [--yarn];
-```
-
-For example:
-
-```
   npm-link-shared /home/user/internal_modules/ /home/user/my-project --yarn
 ```
 
-this works in conjunction with all other options
+This works in conjunction with all other options.
+
+### Also link devDependencies
+
+```
+  npm-link-shared /home/user/internal_modules/ /home/user/my-project --include-dev
+```
+
+Ordinarily, only packages found under the dependencies key in a project's `package.json` are linked. With this option, devDependencies are also linked.
 
 ## Developing
 
