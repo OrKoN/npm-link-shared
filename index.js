@@ -8,7 +8,7 @@ var S = require('string');
 var argv = require('minimist')(process.argv.slice(2));
 var link = require('./lib/link');
 
-var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [--yarn] [--<npm-link-option> [--<npm-link-option>]] [<module1..> [, <module2..>]]';
+var usage = 'Usage: npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]] [--yarn] [--include-dev] [--<npm-link-option> [--<npm-link-option>]]';
 
 if (argv._.length < 2) {
   console.log(usage);
@@ -26,20 +26,27 @@ if (!sharedDir || !targetDir) {
 sharedDir = S(sharedDir).ensureRight('/').s;
 targetDir = S(targetDir).ensureRight('/').s;
 
-var moduleList = [];
+var moduleWhiteList = [];
 if (argv._.length > 2) {
   for (var i = 2; i < argv._.length; i++) {
-    moduleList.push(argv._[i]);
+    moduleWhiteList.push(argv._[i]);
   }
 }
 
 var executable = argv['yarn'] ? 'yarn' : 'npm';
+var includeDev = argv['include-dev'] ? true : false;
 
 delete(argv['_']);
 delete(argv['yarn']);
+delete(argv['include-dev']);
 
-var optionList = Object.keys(argv).map(function (optionName) {
+var linkOptions = Object.keys(argv).map(function (optionName) {
     return '--' + optionName + '=' + argv[optionName];
 });
 
-link(sharedDir, targetDir, moduleList, optionList, executable);
+link(sharedDir, targetDir, {
+  'moduleWhiteList': moduleWhiteList,
+  'executable': executable,
+  'includeDev': includeDev,
+  'linkOptions': linkOptions
+});
