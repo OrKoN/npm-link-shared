@@ -61,25 +61,11 @@ describe('npm-link-shared', function() {
     done();
   });
 
-  it('should throw on missing directories if not allowNoDir', function(done) {
-    var base = process.cwd();
-    // These two ensure that we maintain backwards compatibility by
-    // throwing when a non-existing directory is used. This could help
-    // catching configuration mistakes in CI systems.
-    assert.throws(function noDirTestThrowOne() {
-      link(base + '/test/flarbatron/', base + '/test/target_single', [], []);
-    });
-    assert.throws(function noDirTestThrowTwo() {
-      link(base + '/test/shared_modules/', base + '/test/flarbatron', [], []);
-    });
-    done();
-  });
-
-  it('should not throw on missing directories if allowNoDir', function(done) {
+  it('should exit cleanly on missing directories', function(done) {
     var base = process.cwd();
     assert.doesNotThrow(function noDirTestNoThrow() {
-      link(base + '/test/flarbatron/', base + '/test/target_single', [], [], 'npm', true);
-      link(base + '/test/shared_modules/', base + '/test/flarbatron', [], [], 'npm', true);
+      link(base + '/test/flarbatron/', base + '/test/target_single', [], []);
+      link(base + '/test/shared_modules/', base + '/test/flarbatron', [], []);
     });
     done();
   });
