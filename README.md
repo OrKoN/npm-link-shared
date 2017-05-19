@@ -17,6 +17,8 @@ npm install npm-link-shared -g
 
 ## Changelog
 
+v0.5.1 (2017-05-19) - Support for `--include-peer` which links peer dependencies if they are defined.
+
 v0.5.0 (2017-03-29) - **BREAKING CHANGES**: The lib/api function's arguments have been revamped. The previously undocumented argument --includeDev is now --include-dev to be consistent with other arguments. We now print a warning and exit gracefully if either the shared or target directory do not exist.
 
 v0.4.0 (2017-03-13) - Support for changing executable to yarn with `--yarn`. **Use at your own risk!** `yarn link` is not yet functionally equivalent to `npm link`.
