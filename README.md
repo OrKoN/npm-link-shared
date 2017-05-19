@@ -34,7 +34,7 @@ v0.1.6 (2015-04-20) - Removed unneeded npm dependency. Added a possibility to de
 ## Usage
 
 ```
-  npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]] [--yarn] [--include-dev] [--<npm-link-option> [--<npm-link-option>]]
+  npm-link-shared <shared-modules-dir> <target-installation-dir> [<module1..> [, <module2..>]] [--yarn] [--include-dev] [--include-peer] [--<npm-link-option> [--<npm-link-option>]]
 ```
 
 For example:
@@ -71,13 +71,21 @@ This prevents installation of devDependencies of shared modules by passing the p
 
 This works in conjunction with all other options.
 
-### Also link devDependencies
+### Also link devDependencies and/or peerDependencies
+
+devDependencies:
 
 ```
   npm-link-shared /home/user/internal_modules/ /home/user/my-project --include-dev
 ```
 
-Ordinarily, only packages found under the dependencies key in a project's `package.json` are linked. With this option, devDependencies are also linked.
+peerDependencies:
+
+```
+  npm-link-shared /home/user/internal_modules/ /home/user/my-project --include-peer
+```
+
+Ordinarily, only packages found under the dependencies key in a project's `package.json` are linked. With this option, devDependencies and/or peerDependencies are also linked.
 
 ## Developing
 
