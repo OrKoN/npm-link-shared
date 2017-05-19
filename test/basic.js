@@ -75,6 +75,20 @@ describe('npm-link-shared', function() {
     done();
   });
 
+  it("should also install local peer dependencies via linking", function (done) {
+    var base = process.cwd();
+    var target = base + '/test/target_peer_dependency';
+    link(base + '/test/shared_modules/', target, {
+      'moduleWhiteList': ['module-c', 'module-b'],
+      'linkOptions': ['--production'],
+      'includePeer': true
+    });
+    assert(fs.existsSync(base + '/test/target_peer_dependency/node_modules/module-c'), 'module-c does not exist');
+    assert(fs.existsSync(base + '/test/target_peer_dependency/node_modules/module-b'), 'module-b (included as a local peer dependency) does not exist');
+    
+    done();
+  });
+
   it('should exit cleanly on missing directories', function(done) {
     var base = process.cwd();
     assert.doesNotThrow(function noDirTestNoThrow() {
