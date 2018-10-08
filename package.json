@@ -20,11 +20,10 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.1.0",
-    "minimist": "^1.1.1",
-    "string": "^3.1.1"
+    "minimist": "^1.1.1"
   },
   "devDependencies": {
-    "mocha": "^3.5.0"
+    "mocha": "^5.2.0"
   },
   "engines": {
     "node": ">=4.0.0"
