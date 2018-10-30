@@ -1,7 +1,8 @@
 {
   "name": "npm-link-shared",
   "version": "0.5.5",
-  "description": "links a folder of local modules with inter-dependencies to the target directory",
+  "description":
+    "links a folder of local modules with inter-dependencies to the target directory",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
@@ -27,5 +28,6 @@
   },
   "engines": {
     "node": ">=6.0.0"
-  }
+  },
+  "files": ["index.js", "lib"]
 }
