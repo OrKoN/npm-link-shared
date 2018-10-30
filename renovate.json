@@ -1,4 +1,7 @@
 {
+  "assignees": [
+    "OrKoN"
+  ],
   "extends": [
     "config:base"
   ]
